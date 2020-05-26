@@ -1,7 +1,7 @@
 import environ
 
 # Using django-environ for implementation twelve-factor methodology to configure application with environment variables
-root = environ.Path(__file__) - 3
+root = environ.Path(__file__) - 4
 env = environ.Env(
     DEBUG=(bool, False)
 )
