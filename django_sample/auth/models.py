@@ -69,3 +69,7 @@ class SampleUser(AbstractBaseUser):
     def is_staff(self):
         """Is the user a member of staff?"""
         return self.is_admin
+
+    class Meta:
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
