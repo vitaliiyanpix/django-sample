@@ -31,6 +31,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'auth',
+    'projects',
+    'services',
+    'teams'
 ]
 
 MIDDLEWARE = [
@@ -110,5 +113,8 @@ USE_TZ = True
 
 STATIC_ROOT = root('static_root')
 STATIC_URL = env.str('STATIC_URL', default='/static/')
+
+MEDIA_ROOT = root('media_root')
+MEDIA_URL = env.str('MEDIA_URL', default='/uploads/')
 
 AUTH_USER_MODEL = 'sample_auth.SampleUser'

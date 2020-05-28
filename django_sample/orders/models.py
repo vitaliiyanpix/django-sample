@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+from projects.models import Project
+
+
+class Order(models.Model):
+    project = models.ForeignKey(Project)

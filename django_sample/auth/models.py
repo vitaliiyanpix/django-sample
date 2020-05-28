@@ -6,7 +6,7 @@ from django.contrib.auth.models import (
 
 class SampleUserManager(BaseUserManager):
     """Sample manager for SampleUser"""
-    def create_user(self, email, name, password=None):
+    def create_user(self, email, name, role, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -17,6 +17,7 @@ class SampleUserManager(BaseUserManager):
         user = self.model(
             email=self.normalize_email(email),
             name=name,
+            role=role
         )
 
         user.set_password(password)
@@ -32,6 +33,7 @@ class SampleUserManager(BaseUserManager):
             email,
             password=password,
             name=name,
+            role='staff'
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -40,12 +42,19 @@ class SampleUserManager(BaseUserManager):
 
 class SampleUser(AbstractBaseUser):
     """Sample user model"""
+    USER_ROLE_CHOICES = (
+        ('staff', 'staff'),
+        ('provider', 'provider'),
+        ('customer', 'customer'),
+    )
+
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
         unique=True,
     )
     name = models.CharField(max_length=200)
+    role = models.CharField(max_length=20, choices=USER_ROLE_CHOICES, default='customer')
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
