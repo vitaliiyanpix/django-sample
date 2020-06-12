@@ -2,14 +2,11 @@ import environ
 
 # Using django-environ for implementation twelve-factor methodology to configure application with environment variables
 root = environ.Path(__file__) - 4
+project_root = environ.Path(__file__) - 3
 env = environ.Env(
     DEBUG=(bool, False)
 )
 environ.Env.read_env()
-
-
-# Build paths inside the project
-BASE_DIR = root()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
@@ -30,9 +27,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'drf_yasg',
     'rest_framework',
 
     'auth',
+    'core',
     'projects',
     'services',
     'teams'
@@ -53,7 +52,9 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            project_root('templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
