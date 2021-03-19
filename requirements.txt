@@ -6,7 +6,7 @@ coreschema==0.0.4
 Django==3.0.7
 django-environ==0.4.5
 django-filter==2.2.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 djangorestframework-simplejwt==4.4.0
 drf-yasg==1.17.1
 idna==2.9
